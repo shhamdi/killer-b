@@ -21,28 +21,25 @@ module.exports = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        foreground: "hsla(var(--foreground))",
+        "foreground-2": "hsla(var(--foreground-2))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
           border: "hsl(var(--primary-border))",
-          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
-          border: "hsla(var(--secondary-border))",
-          hover: "hsla(var(--secondary-hover))",
+          border: "hsl(var(--secondary-border))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
-          border: "hsl(var(--destructive-border))",
-          hover: "hsl(var(--destructive-hover))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          foreground: "hsla(var(--muted-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
