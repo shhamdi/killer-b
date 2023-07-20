@@ -33,11 +33,17 @@
 
     --primary-border: 156 72% 67%;
 
+    --primary-hover: 161 94% 30%;
+    --primary-active: 163 94% 24%;
+
     /* ok */
     --secondary: 240 6% 97%;
     --secondary-foreground: 0 0% 0%;
 
     --secondary-border: 240 3% 81%;
+
+    --secondary-hover: 240, 4%, 89%, 1;
+    --secondary-active: 240, 3%, 85%, 1;
 
     /* ok */
     --accent: 240 6% 97%;
@@ -82,11 +88,17 @@
 
     --primary-border: 156 72% 67%;
 
+    --primary-hover: 161 94% 30%;
+    --primary-active: 163 94% 24%;
+
     /* ok */
     --secondary: 240 5% 20%;
     --secondary-foreground: 0 0% 100%;
 
     --secondary-border: 240 3% 50%;
+
+    --secondary-hover: 240, 4%, 18%, 1;
+    --secondary-active: 240, 5%, 15%, 1;
 
     /* ok */
     --accent: 240 5% 20%;
