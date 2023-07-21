@@ -3,13 +3,13 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { Toggletheme } from "@/components/ui/custom-switch"
 import { Icons } from "@/components/icons"
-import ToggleTheme from "@/components/toggle-theme"
 
 export default function Home() {
   return (
     <>
-      {/* <ToggleTheme className="absolute" /> */}
+      <Toggletheme className="absolute right-8 top-8" />
       <section className="flex flex-col justify-center pb-10 pt-16 md:pb-16 md:pt-24 lg:pb-24 lg:pt-48">
         <div className="container flex max-w-[64rem] flex-col items-start gap-4 text-left">
           <h1
@@ -26,7 +26,7 @@ export default function Home() {
             Check the github repository for the source code.
           </p>
           <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="#" className={cn(buttonVariants({ size: "lg" }))}>
               Get Started
             </Link>
             <Link
