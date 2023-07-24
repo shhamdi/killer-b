@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 
 import { Icons } from "../icons"
 
-const Toggletheme = React.forwardRef<
+const ToggleTheme = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
 >(({ className, ...props }, ref) => {
@@ -37,12 +37,12 @@ const Toggletheme = React.forwardRef<
       <Icons.sun className="absolute right-0 h-4 w-4" />
       <SwitchPrimitives.Thumb
         className={cn(
-          "pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-6 data-[state=unchecked]:translate-x-0"
+          "pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-6 data-[state=unchecked]:translate-x-0 dark:bg-secondary-border"
         )}
       />
     </SwitchPrimitives.Root>
   )
 })
-Toggletheme.displayName = SwitchPrimitives.Root.displayName
+ToggleTheme.displayName = SwitchPrimitives.Root.displayName
 
-export { Toggletheme }
+export { ToggleTheme }

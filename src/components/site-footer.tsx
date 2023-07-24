@@ -24,6 +24,15 @@ const SiteFooter = ({ className }: React.HTMLAttributes<HTMLElement>) => {
           >
             Vercel
           </a>
+          . Ilustrations by{" "}
+          <a
+            href="https://popsy.co/"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold underline"
+          >
+            Popsy
+          </a>
           . The source code is available on{" "}
           <a
             href="https://github.com/shhamdi/killer-b"
