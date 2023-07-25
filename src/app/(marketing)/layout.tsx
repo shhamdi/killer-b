@@ -1,7 +1,7 @@
 import Link from "next/link"
+import { cn } from "@/utils/classname"
 
 import { marketingConfig } from "@/config/marketing"
-import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { ToggleTheme } from "@/components/ui/custom-switch"
 import MainNav from "@/components/main-nav"

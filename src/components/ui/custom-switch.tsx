@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { useEffect } from "react"
+import { cn } from "@/utils/classname"
 import * as SwitchPrimitives from "@radix-ui/react-switch"
 import { useTheme } from "next-themes"
-
-import { cn } from "@/lib/utils"
 
 import { Icons } from "../icons"
 

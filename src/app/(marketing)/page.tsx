@@ -1,7 +1,7 @@
 import Link from "next/link"
+import { cn } from "@/utils/classname"
 
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import MarketingImg from "@/components/marketing-img"
@@ -26,7 +26,10 @@ export default function Home() {
               Check the github repository for the source code.
             </p>
             <div className="space-x-4">
-              <Link href="#" className={cn(buttonVariants({ size: "lg" }))}>
+              <Link
+                href="/login"
+                className={cn(buttonVariants({ size: "lg" }))}
+              >
                 Get Started
               </Link>
               <Link

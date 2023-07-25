@@ -3,10 +3,10 @@
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
 import { MainNavItem } from "@/types"
+import { cn } from "@/utils/classname"
 
 import { marketingConfig } from "@/config/marketing"
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
 
 import { Icons } from "./icons"
 import MobileNav from "./mobile-nav"

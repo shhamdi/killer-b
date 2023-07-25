@@ -1,9 +1,16 @@
-import { LucideProps, Menu, MoonIcon, SunDimIcon } from "lucide-react"
+import {
+  ChevronLeft,
+  LucideProps,
+  Menu,
+  MoonIcon,
+  SunDimIcon,
+} from "lucide-react"
 
 export const Icons = {
   sun: SunDimIcon,
   moon: MoonIcon,
   mobileTrigger: Menu,
+  chevronLeft: ChevronLeft,
   logo: ({ ...props }: LucideProps) => (
     <svg
       id="Layer_1"

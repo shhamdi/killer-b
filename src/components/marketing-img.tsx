@@ -1,6 +1,8 @@
 import { LucideProps } from "lucide-react"
 
 const MarketingImg = ({ ...props }: LucideProps) => {
+  //TODO: fix all errors related to this svg file
+
   return (
     <svg
       viewBox="0 0 960 960"
