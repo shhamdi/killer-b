@@ -4,6 +4,7 @@ import "@/styles/globals.css"
 
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { TrpcProvider } from "@/providers/trpc-provider"
 import { cn } from "@/utils/classname"
 
 import TailwindIndicator from "@/components/tailwind-indicator"
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {children}
+          <TrpcProvider>{children}</TrpcProvider>
           <TailwindIndicator />
         </ThemeProvider>
       </body>
