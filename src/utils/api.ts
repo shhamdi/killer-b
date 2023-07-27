@@ -9,7 +9,10 @@
  * We also create a few inference helpers for input and output types.
  */
 import { type AppRouter } from "@/server/api/root"
-import { createTRPCReact } from "@trpc/react-query"
+import {
+  createTRPCReact,
+  type inferReactQueryProcedureOptions,
+} from "@trpc/react-query"
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server"
 
 export const getBaseUrl = () => {
@@ -35,3 +38,11 @@ export type RouterInputs = inferRouterInputs<AppRouter>
  * @example type HelloOutput = RouterOutputs['example']['hello']
  */
 export type RouterOutputs = inferRouterOutputs<AppRouter>
+
+/**
+ * Infer React Query options
+ *
+ * @example type ExampleHelloOptions = ReactQueryOptions['example']['hello']
+ *
+ * */
+export type ReactQueryOptions = inferReactQueryProcedureOptions<AppRouter>
