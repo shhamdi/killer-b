@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
+import { getServerAuthSession } from "@/server/auth"
 
 import { Icons } from "@/components/icons"
 import ReturnBack from "@/components/return-back"
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description: "Login to your account",
 }
 
-const LoginPage = () => {
+const LoginPage = async () => {
   return (
     <div className="container flex h-screen flex-col items-center justify-center">
       <ReturnBack />
