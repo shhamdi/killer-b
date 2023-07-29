@@ -1,5 +1,6 @@
 import {
   ChevronLeft,
+  Loader2,
   LucideProps,
   Menu,
   MoonIcon,
@@ -11,6 +12,7 @@ export const Icons = {
   moon: MoonIcon,
   mobileTrigger: Menu,
   chevronLeft: ChevronLeft,
+  spinner: Loader2,
   logo: ({ ...props }: LucideProps) => (
     <svg
       id="Layer_1"

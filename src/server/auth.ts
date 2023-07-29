@@ -11,13 +11,14 @@ import { env } from "@/env.mjs"
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   pages: {
-    // signIn: "/login",
+    signIn: "/login",
   },
   session: {
     strategy: "jwt",
   },
   providers: [
     CredentialsProvider({
+      id: "credentials",
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
       // `credentials` is used to generate a form on the sign in page.
@@ -28,7 +29,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const { email, password } = credentials ?? {}
 
         if (!email || !password) {

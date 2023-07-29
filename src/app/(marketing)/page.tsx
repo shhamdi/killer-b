@@ -150,7 +150,7 @@ export default function Home() {
             <div className="space-y-3">
               <h3 className="font-semibold text-foreground">Typesafe API</h3>
               <p className="text-sm text-foreground-2">
-                Typesafe API using tRPC in coordination with zod validator.
+                Typesafe API using tRPC in conjunction with zod validator.
               </p>
             </div>
           </div>
