@@ -23,10 +23,10 @@ A markdown-based note-taking app built using Next.js 13
 
 ## Roadmap
 
-- [x] ~Dark mode~
-- [x] ~Change the default style of Shadcn UI components~
-- [x] ~Add tRPC~
-- [ ] Add authentication
+- [x] ~~Dark mode~~
+- [x] ~~Change the default style of Shadcn UI components~~
+- [x] ~~Add tRPC~~
+- [x] ~~Add authentication~~
 - [ ] Responsive styles
 - [ ] Add markdown editor
 - [ ] Add live preview

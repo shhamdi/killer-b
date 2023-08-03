@@ -72,6 +72,7 @@ const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
+                    type="email"
                     placeholder="example@email.com"
                     {...field}
                     className="w-full placeholder:text-secondary-border"
