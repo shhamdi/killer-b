@@ -25,8 +25,8 @@ const LoginPage = async () => {
         </div>
         <UserAuthForm />
       </div>
-      <p className="text-lg underline underline-offset-4">
-        <Link href="/register">{"Don't "}have an account? Sign Up</Link>
+      <p className="py-2 text-lg underline underline-offset-4">
+        <Link href={"/register"}>{"Don't "}have an account? Sign Up</Link>
       </p>
     </div>
   )

@@ -82,7 +82,6 @@ const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
             name="password"
@@ -101,14 +100,61 @@ const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="my-2" disabled={isLoading}>
-            {isLoading && (
+          <Button
+            type="submit"
+            className="my-2"
+            disabled={isLoading || isGoogleLoading || isGitHubLoading}
+          >
+            {isLoading ? (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
+            ) : null}
             Login
           </Button>
         </form>
       </Form>
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <div className="bg-background px-2 text-muted-foreground">
+            Or continue with
+          </div>
+        </div>
+      </div>
+
+      <Button
+        variant="outline"
+        onClick={() => {
+          setIsGitHubLoading(true)
+          signIn("github")
+        }}
+        disabled={isLoading || isGitHubLoading || isGoogleLoading}
+      >
+        {isGitHubLoading ? (
+          <Icons.spinner className="mr-4 h-4 w-4 animate-spin" />
+        ) : (
+          <Icons.gitHub className="mr-4 h-4 w-4" />
+        )}
+        Github
+      </Button>
+
+      <Button
+        variant="outline"
+        onClick={() => {
+          setIsGoogleLoading(true)
+          signIn("google")
+        }}
+        disabled={isLoading || isGitHubLoading || isGoogleLoading}
+      >
+        {isGoogleLoading ? (
+          <Icons.spinner className="mr-4 h-4 w-4 animate-spin" />
+        ) : (
+          <Icons.google className="mr-4 h-4 w-4" />
+        )}
+        Google
+      </Button>
     </div>
   )
 }
