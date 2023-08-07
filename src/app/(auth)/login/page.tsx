@@ -1,6 +1,5 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { getServerAuthSession } from "@/server/auth"
 
 import { Icons } from "@/components/icons"
 import ReturnBack from "@/components/return-back"
