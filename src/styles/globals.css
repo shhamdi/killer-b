@@ -70,7 +70,7 @@
 
     /* ok */
     --popover: 240 3% 12%;
-    --popover-foreground: 0 0% 100%;
+    --popover-foreground: 60, 100%, 98%, 0.86;
 
     /* ok */
     --card: 240 3% 12%;

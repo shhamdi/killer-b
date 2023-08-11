@@ -1,3 +1,5 @@
+import MainNav from "@/components/main-nav"
+
 export type NavItem = {
   title: string
   href: string
@@ -18,4 +20,8 @@ export type SiteConfig = {
 
 export type MarketingConfig = {
   mainNav: MainNavItem[]
+}
+
+export type DashboardConfig = {
+  MainNav: MainNavItem[]
 }

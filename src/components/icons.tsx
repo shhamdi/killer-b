@@ -5,6 +5,7 @@ import {
   Menu,
   MoonIcon,
   SunDimIcon,
+  User2,
 } from "lucide-react"
 
 export const Icons = {
@@ -13,6 +14,7 @@ export const Icons = {
   mobileTrigger: Menu,
   chevronLeft: ChevronLeft,
   spinner: Loader2,
+  user: User2,
   logo: ({ ...props }: LucideProps) => (
     <svg
       id="Layer_1"

@@ -11,7 +11,7 @@ const SiteFooter = ({ className }: React.HTMLAttributes<HTMLElement>) => {
             href="https://github.com/shhamdi"
             target="_blank"
             rel="noreferrer"
-            className="font-semibold underline underline-offset-4"
+            className="font-medium underline underline-offset-4"
           >
             shhamdi
           </a>
@@ -20,7 +20,7 @@ const SiteFooter = ({ className }: React.HTMLAttributes<HTMLElement>) => {
             href="https://vercel.com/"
             target="_blank"
             rel="noreferrer"
-            className="font-semibold underline underline-offset-4"
+            className="font-medium underline underline-offset-4"
           >
             Vercel
           </a>
@@ -29,7 +29,7 @@ const SiteFooter = ({ className }: React.HTMLAttributes<HTMLElement>) => {
             href="https://popsy.co/"
             target="_blank"
             rel="noreferrer"
-            className="font-semibold underline underline-offset-4"
+            className="font-medium underline underline-offset-4"
           >
             Popsy
           </a>
@@ -38,7 +38,7 @@ const SiteFooter = ({ className }: React.HTMLAttributes<HTMLElement>) => {
             href="https://github.com/shhamdi/killer-b"
             target="_blank"
             rel="noreferrer"
-            className="font-semibold underline underline-offset-4"
+            className="font-medium underline underline-offset-4"
           >
             Github
           </a>

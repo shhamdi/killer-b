@@ -74,8 +74,12 @@ const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
                   <Input
                     type="email"
                     placeholder="example@email.com"
+                    className={cn(
+                      "w-full placeholder:text-secondary-border",
+                      form.formState.errors.email?.message &&
+                        "focus-visible:ring-destructive"
+                    )}
                     {...field}
-                    className="w-full placeholder:text-secondary-border"
                   />
                 </FormControl>
                 <FormMessage />
@@ -90,9 +94,13 @@ const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
                 <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="••••••••"
+                    placeholder="password"
                     type="password"
-                    className="w-full placeholder:text-secondary-border"
+                    className={cn(
+                      "w-full placeholder:text-secondary-border",
+                      form.formState.errors.password?.message &&
+                        "focus-visible:ring-destructive"
+                    )}
                     {...field}
                   />
                 </FormControl>

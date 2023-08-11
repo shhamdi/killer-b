@@ -74,7 +74,7 @@ export default function Home() {
             <div className="space-y-3">
               <h3 className="font-semibold text-foreground">Next.js 13</h3>
               <p className="text-sm text-foreground-2">
-                App dir, Routing, Layouts, Loading UI and API routes.
+                App dir, Routing, Layouts, Loading UI and Route handlers.
               </p>
             </div>
           </div>
