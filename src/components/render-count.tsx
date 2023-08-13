@@ -7,7 +7,7 @@ const RenderCount = () => {
   renderCount++
 
   return (
-    <div className="fixed left-1 top-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-foreground p-3 font-mono text-xs text-white dark:text-gray-900">
+    <div className="fixed bottom-1 right-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-foreground p-3 font-mono text-xs text-white dark:text-gray-900">
       <div>{renderCount}</div>
     </div>
   )

@@ -44,12 +44,50 @@ model Session {
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String    @unique
   emailVerified DateTime?
   password      String?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  folders       Folder[]
+  notes         Note[]
+}
+
+model Folder {
+  id             String   @id @default(cuid())
+  name           String
+  userId         String
+  parentFolder   Folder?  @relation("FolderToFolder", fields: [parentFolderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentFolderId String?
+  subFolders     Folder[] @relation("FolderToFolder")
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Note           Note[]
+
+  @@index([parentFolderId])
+  @@index([userId])
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String
+  content   Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tags      Tag[]
+  authorId  String
+  folderId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  folder    Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+
+  @@index([folderId])
+  @@index([authorId])
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String
+  notes Note[]
 }
 
 model VerificationToken {
