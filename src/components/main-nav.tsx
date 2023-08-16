@@ -46,7 +46,7 @@ const MainNav = ({ items, children }: MainNavProps) => {
           ))}
         </nav>
       ) : null}
-      <MobileNav items={marketingConfig.mainNav} />
+      <MobileNav items={items} />
     </div>
   )
 }

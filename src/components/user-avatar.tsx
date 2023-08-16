@@ -14,6 +14,7 @@ const UserAvatar = ({ user, ...props }: UserAvatarProps) => {
       {user.image ? (
         <AvatarImage alt="avatar picture" src={user.image} />
       ) : (
+        // TODO: add avatar fallback when reloading the picture
         <AvatarFallback>
           <span className="sr-only">{user.name}</span>
           <Icons.user className="h-4 w-4" />

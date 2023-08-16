@@ -74,6 +74,7 @@ model Note {
   content   Json?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  pinned    Boolean  @default(false)
   tags      Tag[]
   authorId  String
   folderId  String
