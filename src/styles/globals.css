@@ -123,3 +123,19 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+.ͼ1.cm-focused {
+  outline-style: none;
+}
+
+.ͼo,
+.ͼ15,
+.ͼ2 .cm-gutters,
+.ͼo .cm-gutters,
+.ͼ3 .cm-gutters {
+  background-color: transparent;
+}
+
+.ͼ2 .cm-gutters {
+  border: none;
+}

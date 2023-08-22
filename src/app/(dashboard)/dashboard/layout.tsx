@@ -21,7 +21,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <header
         className={cn(
           "py-2 dark:border-b dark:border-secondary-border md:border-none",
@@ -43,7 +43,7 @@ export default async function DashboardLayout({
           </nav>
         </div>
       </header>
-      <main>{children}</main>
+      <main className="overflow-auto">{children}</main>
       <SiteFooter />
     </div>
   )

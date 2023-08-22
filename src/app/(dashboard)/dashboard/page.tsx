@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 
-import Editor from "@/components/editor"
+import Editor from "@/components/editor/index"
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const DashboardPage = () => {
   return (
     <div>
-      <Editor className="w-screen" />
+      <Editor />
     </div>
   )
 }
