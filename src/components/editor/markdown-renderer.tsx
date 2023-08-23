@@ -1,4 +1,5 @@
 import { ComponentProps } from "react"
+import { useRenderCount } from "@uidotdev/usehooks"
 import ReactMarkdown from "react-markdown"
 import rehypeSanitize from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
@@ -7,8 +8,6 @@ import styles from "@/styles/react-markdown.module.css"
 
 const remarkPlugins = [remarkGfm]
 const rehypePlugins = [rehypeSanitize]
-
-let renderCount = 0
 
 interface MarkdownRendererProps extends ComponentProps<"div"> {
   markdown: string
@@ -19,7 +18,8 @@ export const MarkdownRenderer = ({
   className,
   ...props
 }: MarkdownRendererProps) => {
-  renderCount++
+  const renderCount = useRenderCount()
+
   return (
     // TODO: add html tags support to the markdown renderer
     <div className={className} {...props}>
