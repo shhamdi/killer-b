@@ -28,7 +28,7 @@ A markdown-based note-taking app built using Next.js 13
 - [x] ~~Add tRPC~~
 - [x] ~~Add authentication~~
 - [ ] Responsive styles
-- [ ] Add markdown editor
-- [ ] Add live preview
-- [ ] Model the database
+- [x] ~~Add markdown editor~~
+- [x] ~~Add live preview~~
+- [x] ~~Model the database~~
 - [ ] Add search bar
