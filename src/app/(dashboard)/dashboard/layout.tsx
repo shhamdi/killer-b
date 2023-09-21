@@ -44,7 +44,7 @@ export default async function DashboardLayout({
         </div>
       </header>
       <main className="overflow-auto">{children}</main>
-      <SiteFooter />
+      <SiteFooter className="fixed bottom-0 left-0 right-0 bg-background" />
     </div>
   )
 }

@@ -11,16 +11,17 @@ import { siteConfig } from "@/config/site"
 import { Icons } from "./icons"
 import MobileNav from "./mobile-nav"
 
-interface MainNavProps {
+interface MainNavProps extends React.ComponentPropsWithoutRef<"div"> {
   items?: MainNavItem[]
   children?: React.ReactNode
+  className?: string
 }
 
-const MainNav = ({ items, children }: MainNavProps) => {
+const MainNav = ({ items, children, className }: MainNavProps) => {
   const segment = useSelectedLayoutSegment()
 
   return (
-    <div className="flex gap-6">
+    <div className={cn("flex gap-6", className)}>
       <Link href="/" className="hidden items-center space-x-2 md:flex">
         <Icons.logo className="h-5 w-5" />
         <span className="font-semibold">{siteConfig.name}</span>

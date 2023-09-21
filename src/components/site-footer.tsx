@@ -1,6 +1,8 @@
 import { Icons } from "./icons"
 
-const SiteFooter = ({ className }: React.HTMLAttributes<HTMLElement>) => {
+interface siteFooterProps extends React.ComponentPropsWithoutRef<"footer"> {}
+
+const SiteFooter = ({ className }: siteFooterProps) => {
   return (
     <footer className={className}>
       <div className="container flex flex-col items-center gap-5 py-8 md:flex-row">
