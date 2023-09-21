@@ -11,7 +11,7 @@ interface UserAvatarProps extends AvatarProps {
 const UserAvatar = ({ user, ...props }: UserAvatarProps) => {
   return (
     <Avatar {...props}>
-      {user.image ? (
+      {/* {user.image ? (
         <AvatarImage alt="avatar picture" src={user.image} />
       ) : (
         // TODO: add avatar fallback when reloading the picture
@@ -19,7 +19,12 @@ const UserAvatar = ({ user, ...props }: UserAvatarProps) => {
           <span className="sr-only">{user.name}</span>
           <Icons.user className="h-4 w-4" />
         </AvatarFallback>
-      )}
+      )} */}
+      <AvatarImage alt="avatar picture" src={user.image!} />
+      <AvatarFallback>
+        <span className="sr-only">{user.name}</span>
+        <Icons.user className="h-4 w-4" />
+      </AvatarFallback>
     </Avatar>
   )
 }
