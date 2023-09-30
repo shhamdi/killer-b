@@ -35,9 +35,14 @@ const NotePage = async ({ params }: NotePageProps) => {
 
   return (
     <Editor
-      note={{ id: note.id, title: note.title, content: note.content }}
+      note={{
+        id: note.id,
+        title: note.title,
+        content: note.content,
+        folderId: note.folderId,
+        authorId: user.id,
+      }}
       className="my-4"
-      user={{ id: user.id }}
     />
   )
 }

@@ -9,7 +9,7 @@ import { markdown, markdownLanguage } from "@codemirror/lang-markdown"
 import { languages } from "@codemirror/language-data"
 import { EditorView } from "@codemirror/view"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Note, User } from "@prisma/client"
+import { Note } from "@prisma/client"
 import CodeMirror, {
   basicSetup,
   ReactCodeMirrorRef,
@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
 import { z } from "zod"
 
+import { useNotes } from "@/hooks/use-queries"
 import { toast } from "@/hooks/use-toast"
 
 import { Icons } from "../icons"
@@ -36,11 +37,10 @@ const extensions = [
 // const rehypePlugins = ;
 
 interface EditorProps extends React.ComponentPropsWithoutRef<"div"> {
-  note: Pick<Note, "id" | "title" | "content">
-  user: Pick<User, "id">
+  note: Pick<Note, "id" | "title" | "content" | "folderId" | "authorId">
 }
 
-const Editor = ({ note, user, className, ...props }: EditorProps) => {
+const Editor = ({ note, className, ...props }: EditorProps) => {
   let currentTheme: "dark" | "light"
   const [markdownText, setMarkdownText] = useState<string>(note.content)
   const [isClient, setIsClient] = useState<boolean>(false)
@@ -49,11 +49,15 @@ const Editor = ({ note, user, className, ...props }: EditorProps) => {
   const { theme } = useTheme()
   const router = useRouter()
 
-  const updateSidebar = api.note.getAllNotes.useQuery({ authorId: user.id })
+  const notes = useNotes({
+    authorId: note.authorId,
+    folderId: note.folderId,
+    enabled: false,
+  })
 
   const updateNote = api.note.updateNote.useMutation({
     onSettled: () => {
-      updateSidebar.refetch()
+      notes.refetch()
       router.refresh()
     },
   })

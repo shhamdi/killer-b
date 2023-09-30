@@ -3,6 +3,8 @@
 import { Suspense } from "react"
 import { api } from "@/utils/api"
 
+import { useFolders, useNotes } from "@/hooks/use-queries"
+
 import FolderContext from "./folder-context"
 import { CreateNewFolder } from "./folder-operations"
 import { Icons } from "./icons"
@@ -23,17 +25,14 @@ interface DashboardSidebarProps {
 }
 
 const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
-  const getFolders = api.folder.getFolders.useQuery({ userId: userId })
+  const getFolders = useFolders({ userId: userId })
   const addFolder = api.folder.createFolder.useMutation({
     onSettled: () => {
       getFolders.refetch()
     },
   })
 
-  const getNotes = api.note.getNotes.useQuery({
-    authorId: userId,
-    folderId: null,
-  })
+  const getNotes = useNotes({ authorId: userId, folderId: null })
   const addNote = api.note.createNote.useMutation({
     onSettled: () => {
       getNotes.refetch()
