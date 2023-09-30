@@ -4,6 +4,7 @@ import { getServerAuthSession } from "@/server/auth"
 import { cn } from "@/utils/classname"
 
 import { ToggleTheme } from "@/components/ui/custom-switch"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import DashboardSidebar from "@/components/dashboard-sidebar"
 import MainLogo from "@/components/main-logo"
 import UserAccountNav from "@/components/user-account-nav"
@@ -52,8 +53,12 @@ export default async function DashboardLayout({
       </header>
       <div className="container relative flex-1 items-start md:grid md:grid-cols-[300px_minmax(0,1fr)] md:gap-6">
         <aside className="hidden md:block">
-          <div className="fixed inset-0 left-8 top-14 z-[50] w-[300px] border-r border-secondary-border pr-8">
-            <DashboardSidebar userId={user.id} />
+          <div className="fixed inset-0 top-14 z-[50] w-[300px] border-r border-secondary-border">
+            <ScrollArea className="h-full w-full">
+              <div className="w-[300px] px-8">
+                <DashboardSidebar userId={user.id} />
+              </div>
+            </ScrollArea>
           </div>
         </aside>
         <main className="relative mt-14 min-h-[calc(100vh-3.5rem)] w-full overflow-auto">

@@ -1,6 +1,5 @@
 "use client"
 
-import { Suspense } from "react"
 import { api } from "@/utils/api"
 
 import { useFolders, useNotes } from "@/hooks/use-queries"
@@ -12,7 +11,6 @@ import Loading from "./loading"
 import NoteContext from "./note-context"
 import { CreateNewNote } from "./note-operations"
 import { Accordion } from "./ui/accordion"
-import { Skeleton } from "./ui/skeleton"
 import {
   Tooltip,
   TooltipContent,
@@ -41,7 +39,7 @@ const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
 
   return (
     <div className="relative flex flex-col">
-      <div className="sticky top-0 flex h-10 gap-2 py-3">
+      <div className="sticky top-0 flex h-10 gap-2 bg-background py-3">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -84,38 +82,40 @@ const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
         </TooltipProvider>
       </div>
 
-      <div className="w-full">
-        <Accordion type="multiple">
-          {getFolders.isLoading ? (
+      <div>
+        <div>
+          <Accordion type="multiple">
+            {getFolders.isLoading ? (
+              <Loading />
+            ) : (
+              getFolders.data?.map((item, index) => (
+                <FolderContext
+                  key={index}
+                  value={item.id}
+                  name={item.name}
+                  userId={userId}
+                  refetch={getFolders}
+                />
+              ))
+            )}
+          </Accordion>
+        </div>
+
+        <div>
+          {getNotes.isLoading ? (
             <Loading />
           ) : (
-            getFolders.data?.map((item, index) => (
-              <FolderContext
+            getNotes.data?.map((item, index) => (
+              <NoteContext
                 key={index}
-                value={item.id}
-                name={item.name}
-                userId={userId}
-                refetch={getFolders}
+                id={item.id}
+                title={item.title}
+                authorId={userId}
+                refetch={getNotes}
               />
             ))
           )}
-        </Accordion>
-      </div>
-
-      <div>
-        {getNotes.isLoading ? (
-          <Loading />
-        ) : (
-          getNotes.data?.map((item, index) => (
-            <NoteContext
-              key={index}
-              id={item.id}
-              title={item.title}
-              authorId={userId}
-              refetch={getNotes}
-            />
-          ))
-        )}
+        </div>
       </div>
     </div>
   )
