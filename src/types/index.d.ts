@@ -1,4 +1,4 @@
-import MainNav from "@/components/main-nav"
+import MainNav from "@/components/MainNav"
 
 export type NavItem = {
   title: string

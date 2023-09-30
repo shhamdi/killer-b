@@ -9,6 +9,7 @@ import { marketingConfig } from "@/config/marketing"
 import { siteConfig } from "@/config/site"
 
 import { Icons } from "./icons"
+import MainLogo from "./main-logo"
 import MobileNav from "./mobile-nav"
 
 interface MainNavProps extends React.ComponentPropsWithoutRef<"div"> {
@@ -22,10 +23,7 @@ const MainNav = ({ items, children, className }: MainNavProps) => {
 
   return (
     <div className={cn("flex gap-6", className)}>
-      <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo className="h-5 w-5" />
-        <span className="font-semibold">{siteConfig.name}</span>
-      </Link>
+      <MainLogo />
 
       {items?.length ? (
         <nav className="hidden items-center gap-6 md:flex">

@@ -1,11 +1,16 @@
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getServerAuthSession } from "@/server/auth"
 import { cn } from "@/utils/classname"
 
 import { ToggleTheme } from "@/components/ui/custom-switch"
-import MainNav from "@/components/main-nav"
-import SiteFooter from "@/components/site-footer"
+import DashboardSidebar from "@/components/dashboard-sidebar"
+import MainLogo from "@/components/main-logo"
 import UserAccountNav from "@/components/user-account-nav"
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+}
 
 interface DashboardLayoutProps {
   children?: React.ReactNode
@@ -21,16 +26,18 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="relative min-h-screen">
       <header
         className={cn(
-          "py-2 dark:border-b dark:border-secondary-border md:border-none",
+          "border-b border-secondary-border",
           "bg-background dark:bg-secondary",
-          "h-fit"
+          "h-14",
+          "flex items-center",
+          "fixed inset-x-0 top-0 z-30 w-full"
         )}
       >
         <div className="container flex items-center justify-between">
-          <MainNav />
+          <MainLogo className="flex" />
           <nav className="flex items-center gap-4">
             <ToggleTheme />
             <UserAccountNav
@@ -43,8 +50,16 @@ export default async function DashboardLayout({
           </nav>
         </div>
       </header>
-      <main className="overflow-auto">{children}</main>
-      <SiteFooter className="fixed bottom-0 left-0 right-0 bg-background" />
+      <div className="container relative flex-1 items-start md:grid md:grid-cols-[300px_minmax(0,1fr)] md:gap-6">
+        <aside className="hidden md:block">
+          <div className="fixed inset-0 left-8 top-14 z-[50] w-[300px] border-r border-secondary-border pr-8">
+            <DashboardSidebar userId={user.id} />
+          </div>
+        </aside>
+        <main className="relative mt-14 min-h-[calc(100vh-3.5rem)] w-full overflow-auto">
+          {children}
+        </main>
+      </div>
     </div>
   )
 }

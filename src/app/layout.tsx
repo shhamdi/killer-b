@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/providers/theme-provider"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 import "@/styles/globals.css"
 
@@ -37,7 +38,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <TrpcProvider>{children}</TrpcProvider>
+          <TrpcProvider>
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </TrpcProvider>
           <Toaster />
           <TailwindIndicator />
           <RenderCount />

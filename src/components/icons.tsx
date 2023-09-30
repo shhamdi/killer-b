@@ -1,7 +1,9 @@
 import {
+  ArrowDownAZ,
   Bold,
   ChevronLeft,
   Code,
+  FolderPlus,
   Italic,
   Link2,
   List,
@@ -11,6 +13,7 @@ import {
   LucideProps,
   Menu,
   MoonIcon,
+  PlusCircle,
   Quote,
   Redo,
   StrikethroughIcon,
@@ -39,6 +42,9 @@ export const Icons = {
   link: Link2,
   strike: StrikethroughIcon,
   quote: Quote,
+  addFolder: FolderPlus,
+  addNote: PlusCircle,
+  sort: ArrowDownAZ,
   logo: ({ ...props }: LucideProps) => (
     <svg
       id="Layer_1"

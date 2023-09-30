@@ -2,6 +2,8 @@
 // as well as the router’s type definition.
 
 import { exampleRouter } from "@/server/api/routers/example"
+import { foldersRouter } from "@/server/api/routers/folders"
+import { notesRouter } from "@/server/api/routers/notes"
 import { createTRPCRouter } from "@/server/api/trpc"
 
 /**
@@ -11,6 +13,8 @@ import { createTRPCRouter } from "@/server/api/trpc"
  */
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
+  folder: foldersRouter,
+  note: notesRouter,
 })
 
 // export type definition of API

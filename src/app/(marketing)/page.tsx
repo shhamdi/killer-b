@@ -154,40 +154,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-
-          <div
-            className={cn(
-              "rounded-sm border border-secondary-border bg-white p-8 dark:bg-transparent",
-              "space-y-3"
-            )}
-          >
-            <Icons.zustand className="h-16 w-16 text-primary" />
-            <div className="space-y-3">
-              <h3 className="font-semibold text-foreground">
-                Client state management
-              </h3>
-              <p className="text-sm text-foreground-2">
-                Client state management with zustand
-              </p>
-            </div>
-          </div>
-
-          <div
-            className={cn(
-              "rounded-sm border border-secondary-border bg-white p-8 dark:bg-transparent",
-              "space-y-3"
-            )}
-          >
-            <Icons.reactQuery className="h-16 w-16 text-primary" />
-            <div className="space-y-3">
-              <h3 className="font-semibold text-foreground">
-                Server state management
-              </h3>
-              <p className="text-sm text-foreground-2">
-                Server state management with Tanstack React Query
-              </p>
-            </div>
-          </div>
         </div>
       </section>
     </>

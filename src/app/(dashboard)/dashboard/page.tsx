@@ -1,15 +1,7 @@
-import { Metadata } from "next"
-
-import Editor from "@/components/editor/editor"
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-}
-
 const DashboardPage = () => {
   return (
-    <div>
-      <Editor className="container my-4" />
+    <div className="flex h-[calc(100vh-3.5rem)] items-center justify-center">
+      <p className="text-lg">Open note or create new</p>
     </div>
   )
 }
