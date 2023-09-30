@@ -96,7 +96,7 @@ const Editor = ({ note, className, ...props }: EditorProps) => {
 
     updateNote.mutate({ id: note.id, title: data.title, content: content })
 
-    if (updateNote.isError) {
+    if (updateNote.error !== null) {
       return toast({
         title: "Something went wrong",
         description: "Your note was not saved. Please try again",

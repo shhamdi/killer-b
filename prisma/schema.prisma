@@ -67,7 +67,7 @@ model Folder {
 model Note {
   id        String   @id @default(cuid())
   title     String
-  content   String   @default("")
+  content   String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   pinned    Boolean  @default(false)

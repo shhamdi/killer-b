@@ -15,7 +15,7 @@ export const notesRouter = createTRPCRouter({
       const { title, authorId, folderId } = input
 
       return await db.note.create({
-        data: { title, authorId, folderId },
+        data: { title, authorId, folderId, content: "" },
       })
     }),
 
