@@ -35,11 +35,9 @@ const NoteContext = ({ title, id, authorId, refetch }: NoteContextProps) => {
     <div className="w-full rounded-md px-2 py-1 text-left hover:bg-secondary">
       <ContextMenu modal={false}>
         <ContextMenuTrigger>
-          <div className="truncate">
-            <Link href={`/dashboard/editor/${id}`} className="w-full">
-              {title}
-            </Link>
-          </div>
+          <Link href={`/dashboard/editor/${id}`} className="w-full">
+            <div className="truncate">{title}</div>
+          </Link>
         </ContextMenuTrigger>
         <ContextMenuContent>
           <RenameNote id={id} authorId={authorId} mutation={renameNote}>
