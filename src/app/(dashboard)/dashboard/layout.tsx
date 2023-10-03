@@ -7,6 +7,7 @@ import { ToggleTheme } from "@/components/ui/custom-switch"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import DashboardSidebar from "@/components/dashboard-sidebar"
 import MainLogo from "@/components/main-logo"
+import MobileDashboardSidebar from "@/components/mobile-dashboard-sidebar"
 import UserAccountNav from "@/components/user-account-nav"
 
 export const metadata: Metadata = {
@@ -38,7 +39,10 @@ export default async function DashboardLayout({
         )}
       >
         <div className="container flex items-center justify-between">
-          <MainLogo className="flex" />
+          <MainLogo />
+          <MobileDashboardSidebar>
+            <DashboardSidebar userId={user.id} />
+          </MobileDashboardSidebar>
           <nav className="flex items-center gap-4">
             <ToggleTheme />
             <UserAccountNav
