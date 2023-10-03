@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { api } from "@/utils/api"
 
+import { toast } from "@/hooks/use-toast"
+
 import { RenameNote } from "./note-operations"
 import {
   ContextMenu,
@@ -19,12 +21,6 @@ interface NoteContextProps {
 }
 
 const NoteContext = ({ title, id, authorId, refetch }: NoteContextProps) => {
-  const renameNote = api.note.renameNote.useMutation({
-    onSettled: () => {
-      refetch.refetch()
-    },
-  })
-
   const deleteNote = api.note.deleteNote.useMutation({
     onSettled: () => {
       refetch.refetch()
@@ -40,7 +36,7 @@ const NoteContext = ({ title, id, authorId, refetch }: NoteContextProps) => {
           </Link>
         </ContextMenuTrigger>
         <ContextMenuContent>
-          <RenameNote id={id} authorId={authorId} mutation={renameNote}>
+          <RenameNote id={id} authorId={authorId} refetch={refetch}>
             <ContextMenuItem
               onSelect={(event) => {
                 event.preventDefault()
@@ -50,7 +46,20 @@ const NoteContext = ({ title, id, authorId, refetch }: NoteContextProps) => {
             </ContextMenuItem>
           </RenameNote>
           <ContextMenuItem
-            onSelect={() => deleteNote.mutate({ id: id, authorId: authorId })}
+            onSelect={() =>
+              deleteNote.mutate(
+                { id: id, authorId: authorId },
+                {
+                  onError() {
+                    toast({
+                      title: "Something went wrong",
+                      description: "Please try again",
+                      variant: "destructive",
+                    })
+                  },
+                }
+              )
+            }
           >
             Delete
           </ContextMenuItem>

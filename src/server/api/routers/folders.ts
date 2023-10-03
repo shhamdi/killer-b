@@ -18,7 +18,12 @@ export const foldersRouter = createTRPCRouter({
       z.object({
         id: z.string(),
         userId: z.string(),
-        name: z.string().min(3).max(128),
+        name: z
+          .string()
+          .min(3, { message: "Folder name must be at least 3 characters" })
+          .max(128, {
+            message: "Folder name must be less than 128 characters",
+          }),
       })
     )
     .mutation(async ({ input }) => {

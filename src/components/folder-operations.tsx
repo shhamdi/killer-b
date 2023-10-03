@@ -1,7 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import { api } from "@/utils/api"
 import { cn } from "@/utils/classname"
+
+import { toast } from "@/hooks/use-toast"
 
 import {
   AlertDialog,
@@ -17,16 +20,29 @@ import {
 import { Input } from "./ui/input"
 
 interface CreateNewFolderProps {
-  mutation: any
+  refetch: any
   children: React.ReactNode
   userId: string
 }
 
 export const CreateNewFolder = ({
-  mutation,
+  refetch,
   children,
   userId,
 }: CreateNewFolderProps) => {
+  const addFolder = api.folder.createFolder.useMutation({
+    onSettled: () => {
+      refetch.refetch()
+    },
+    onError() {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again",
+        variant: "destructive",
+      })
+    },
+  })
+
   const [name, setName] = useState("Untitled")
   return (
     <AlertDialog>
@@ -47,7 +63,7 @@ export const CreateNewFolder = ({
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              mutation.mutate({ name: name, userId: userId })
+              addFolder.mutate({ name: name, userId: userId })
               setName("Untitled")
             }}
           >
@@ -63,16 +79,22 @@ interface RenameFolderProps {
   id: string
   userId: string
   children: React.ReactNode
-  mutation: any
+  refetch: any
 }
 
 export const RenameFolder = ({
   id,
   userId,
   children,
-  mutation,
+  refetch,
 }: RenameFolderProps) => {
   const [name, setName] = useState<string>("")
+
+  const renameFolder = api.folder.renameFolder.useMutation({
+    onSettled: () => {
+      refetch.refetch()
+    },
+  })
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
@@ -92,7 +114,25 @@ export const RenameFolder = ({
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              mutation.mutate({ id: id, userId: userId, name: name })
+              renameFolder.mutate(
+                { id: id, userId: userId, name: name },
+                {
+                  onError(error) {
+                    if (error.data?.zodError) {
+                      toast({
+                        description: error.data.zodError.fieldErrors.name,
+                        variant: "destructive",
+                      })
+                    } else {
+                      toast({
+                        title: "Something went wrong",
+                        description: "Please try again",
+                        variant: "destructive",
+                      })
+                    }
+                  },
+                }
+              )
               setName("")
             }}
           >

@@ -8,7 +8,10 @@ export const notesRouter = createTRPCRouter({
       z.object({
         authorId: z.string(),
         folderId: z.nullable(z.string()),
-        title: z.string().min(3).max(128),
+        title: z
+          .string()
+          .min(3, { message: "Title must be at least 3 characters" })
+          .max(128, { message: "Title must be less than 128 characters" }),
       })
     )
     .mutation(async ({ input }) => {
@@ -24,7 +27,10 @@ export const notesRouter = createTRPCRouter({
       z.object({
         id: z.string(),
         authorId: z.string(),
-        title: z.string().min(3).max(128),
+        title: z
+          .string()
+          .min(3, { message: "Title must be at least 3 characters" })
+          .max(128, { message: "Title must be less than 128 characters" }),
       })
     )
     .mutation(async ({ input }) => {

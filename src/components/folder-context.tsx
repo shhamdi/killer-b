@@ -1,5 +1,8 @@
 import { api } from "@/utils/api"
 
+import { useNotes } from "@/hooks/use-queries"
+import { toast } from "@/hooks/use-toast"
+
 import { RenameFolder } from "./folder-operations"
 import Loading from "./loading"
 import NoteContext from "./note-context"
@@ -35,22 +38,12 @@ const FolderContext = ({
     },
   })
 
-  const renameFolder = api.folder.renameFolder.useMutation({
-    onSettled: () => {
-      refetch.refetch()
-    },
+  const getNotesInsideFolder = useNotes({
+    authorId: userId,
+    folderId: value,
+    enabled: false,
   })
 
-  const getNotesInsideFolder = api.note.getNotes.useQuery(
-    { authorId: userId, folderId: value },
-    { enabled: false }
-  )
-
-  const addNote = api.note.createNote.useMutation({
-    onSettled: () => {
-      getNotesInsideFolder.refetch()
-    },
-  })
   return (
     <ContextMenu modal={false}>
       <AccordionItem value={value} className="border-none">
@@ -63,7 +56,11 @@ const FolderContext = ({
           </AccordionTrigger>
         </ContextMenuTrigger>
         <ContextMenuContent>
-          <CreateNewNote authorId={userId} folderId={value} mutation={addNote}>
+          <CreateNewNote
+            authorId={userId}
+            folderId={value}
+            refetch={getNotesInsideFolder}
+          >
             <ContextMenuItem
               onSelect={(event) => {
                 event.preventDefault()
@@ -73,7 +70,7 @@ const FolderContext = ({
             </ContextMenuItem>
           </CreateNewNote>
 
-          <RenameFolder id={value} userId={userId} mutation={renameFolder}>
+          <RenameFolder id={value} userId={userId} refetch={refetch}>
             <ContextMenuItem
               onSelect={(event) => {
                 event.preventDefault()
@@ -84,7 +81,20 @@ const FolderContext = ({
           </RenameFolder>
 
           <ContextMenuItem
-            onSelect={() => deleteFolder.mutate({ id: value, userId: userId })}
+            onSelect={() =>
+              deleteFolder.mutate(
+                { id: value, userId: userId },
+                {
+                  onError() {
+                    toast({
+                      title: "Something went wrong",
+                      description: "Please try again",
+                      variant: "destructive",
+                    })
+                  },
+                }
+              )
+            }
           >
             Delete
           </ContextMenuItem>

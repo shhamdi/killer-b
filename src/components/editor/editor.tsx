@@ -94,15 +94,28 @@ const Editor = ({ note, className, ...props }: EditorProps) => {
     // @ts-ignore
     const content = codeMirrorRef.current?.view!.viewState.state.doc.toString()
 
-    updateNote.mutate({ id: note.id, title: data.title, content: content })
+    updateNote.mutate(
+      { id: note.id, title: data.title, content: content },
+      {
+        onError(error) {
+          if (error !== null) {
+            return toast({
+              title: "Something went wrong",
+              description: "Your note was not saved. Please try again",
+              variant: "destructive",
+            })
+          }
+        },
+      }
+    )
 
-    if (updateNote.error !== null) {
-      return toast({
-        title: "Something went wrong",
-        description: "Your note was not saved. Please try again",
-        variant: "destructive",
-      })
-    }
+    // if (updateNote.error !== null) {
+    //   return toast({
+    //     title: "Something went wrong",
+    //     description: "Your note was not saved. Please try again",
+    //     variant: "destructive",
+    //   })
+    // }
 
     setIsSaving(false)
 

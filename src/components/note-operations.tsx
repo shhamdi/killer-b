@@ -1,8 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import { api } from "@/utils/api"
 import { cn } from "@/utils/classname"
-import { boolean } from "zod"
+
+import { toast } from "@/hooks/use-toast"
 
 import {
   AlertDialog,
@@ -18,18 +20,24 @@ import {
 import { Input } from "./ui/input"
 
 interface CreateNewNoteProps {
-  mutation: any
+  refetch: any
   children: React.ReactNode
   authorId: string
   folderId?: string | null
 }
 
 export const CreateNewNote = ({
-  mutation,
+  refetch,
   children,
   authorId,
   folderId = null,
 }: CreateNewNoteProps) => {
+  const addNote = api.note.createNote.useMutation({
+    onSettled: () => {
+      refetch.refetch()
+    },
+  })
+
   const [title, setTitle] = useState("Untitled")
   return (
     <AlertDialog>
@@ -50,11 +58,29 @@ export const CreateNewNote = ({
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              mutation.mutate({
-                title: title,
-                authorId: authorId,
-                folderId: folderId,
-              })
+              addNote.mutate(
+                {
+                  title: title,
+                  authorId: authorId,
+                  folderId: folderId,
+                },
+                {
+                  onError(error) {
+                    if (error.data?.zodError) {
+                      toast({
+                        description: error.data.zodError.fieldErrors.title,
+                        variant: "destructive",
+                      })
+                    } else {
+                      toast({
+                        title: "Something went wrong",
+                        description: "Please try again",
+                        variant: "destructive",
+                      })
+                    }
+                  },
+                }
+              )
               setTitle("Untitled")
             }}
           >
@@ -68,7 +94,7 @@ export const CreateNewNote = ({
 
 interface RenameNoteProps {
   children: React.ReactNode
-  mutation: any
+  refetch: any
   id: string
   authorId: string
   open?: boolean
@@ -79,8 +105,14 @@ export const RenameNote = ({
   id,
   authorId,
   children,
-  mutation,
+  refetch,
 }: RenameNoteProps) => {
+  const renameNote = api.note.renameNote.useMutation({
+    onSettled: () => {
+      refetch.refetch()
+    },
+  })
+
   const [title, setTitle] = useState<string>("")
   return (
     <AlertDialog>
@@ -101,7 +133,25 @@ export const RenameNote = ({
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              mutation.mutate({ id: id, title: title, authorId: authorId })
+              renameNote.mutate(
+                { id: id, title: title, authorId: authorId },
+                {
+                  onError(error) {
+                    if (error.data?.zodError) {
+                      toast({
+                        description: error.data.zodError.fieldErrors.title,
+                        variant: "destructive",
+                      })
+                    } else {
+                      toast({
+                        title: "Something went wrong",
+                        description: "Please try again",
+                        variant: "destructive",
+                      })
+                    }
+                  },
+                }
+              )
               setTitle("")
             }}
           >

@@ -3,6 +3,7 @@
 import { api } from "@/utils/api"
 
 import { useFolders, useNotes } from "@/hooks/use-queries"
+import { toast } from "@/hooks/use-toast"
 
 import FolderContext from "./folder-context"
 import { CreateNewFolder } from "./folder-operations"
@@ -24,18 +25,8 @@ interface DashboardSidebarProps {
 
 const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
   const getFolders = useFolders({ userId: userId })
-  const addFolder = api.folder.createFolder.useMutation({
-    onSettled: () => {
-      getFolders.refetch()
-    },
-  })
 
   const getNotes = useNotes({ authorId: userId, folderId: null })
-  const addNote = api.note.createNote.useMutation({
-    onSettled: () => {
-      getNotes.refetch()
-    },
-  })
 
   return (
     <div className="relative flex flex-col">
@@ -43,7 +34,7 @@ const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <CreateNewNote mutation={addNote} authorId={userId}>
+              <CreateNewNote refetch={getNotes} authorId={userId}>
                 <button>
                   <Icons.addNote className="h-5 w-5" />
                 </button>
@@ -58,7 +49,7 @@ const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <CreateNewFolder mutation={addFolder} userId={userId}>
+              <CreateNewFolder refetch={getFolders} userId={userId}>
                 <Icons.addFolder className="h-5 w-5" />
               </CreateNewFolder>
             </TooltipTrigger>
