@@ -17,7 +17,7 @@ import CodeMirror, {
 import { useTheme } from "next-themes"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
-import { z } from "zod"
+import { z, ZodError } from "zod"
 
 import { useNotes } from "@/hooks/use-queries"
 import { toast } from "@/hooks/use-toast"
@@ -56,7 +56,7 @@ const Editor = ({ note, className, ...props }: EditorProps) => {
   })
 
   const updateNote = api.note.updateNote.useMutation({
-    onSettled: () => {
+    onSuccess: () => {
       notes.refetch()
       router.refresh()
     },
@@ -66,7 +66,11 @@ const Editor = ({ note, className, ...props }: EditorProps) => {
 
   type FormData = z.infer<typeof notePatchSchema>
 
-  const { register, handleSubmit } = useForm<FormData>({
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormData>({
     resolver: zodResolver(notePatchSchema),
   })
 
@@ -124,6 +128,10 @@ const Editor = ({ note, className, ...props }: EditorProps) => {
     return toast({
       description: "Your note has been saved",
     })
+  }
+
+  if (errors.title) {
+    toast({ description: errors.title.message, variant: "destructive" })
   }
 
   return isClient ? (
