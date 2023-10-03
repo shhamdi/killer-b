@@ -58,19 +58,6 @@ const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button>
-                <Icons.sort className="h-5 w-5" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Sort</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
       </div>
 
       <div>
