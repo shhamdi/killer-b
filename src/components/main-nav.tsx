@@ -5,10 +5,6 @@ import { useSelectedLayoutSegment } from "next/navigation"
 import { MainNavItem } from "@/types"
 import { cn } from "@/utils/classname"
 
-import { marketingConfig } from "@/config/marketing"
-import { siteConfig } from "@/config/site"
-
-import { Icons } from "./icons"
 import MainLogo from "./main-logo"
 import MobileNav from "./mobile-nav"
 

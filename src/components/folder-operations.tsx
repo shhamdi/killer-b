@@ -34,13 +34,6 @@ export const CreateNewFolder = ({
     onSettled: () => {
       refetch.refetch()
     },
-    onError() {
-      toast({
-        title: "Something went wrong",
-        description: "Please try again",
-        variant: "destructive",
-      })
-    },
   })
 
   const [name, setName] = useState("Untitled")
@@ -63,7 +56,25 @@ export const CreateNewFolder = ({
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              addFolder.mutate({ name: name, userId: userId })
+              addFolder.mutate(
+                { name: name, userId: userId },
+                {
+                  onError(error) {
+                    if (error.data?.zodError) {
+                      toast({
+                        description: error.data.zodError.fieldErrors.name,
+                        variant: "destructive",
+                      })
+                    } else {
+                      toast({
+                        title: "Something went wrong",
+                        description: "Please try again",
+                        variant: "destructive",
+                      })
+                    }
+                  },
+                }
+              )
               setName("Untitled")
             }}
           >

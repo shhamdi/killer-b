@@ -1,5 +1,6 @@
 "use client"
 
+import { Dispatch, SetStateAction } from "react"
 import Link from "next/link"
 import { api } from "@/utils/api"
 
@@ -18,9 +19,16 @@ interface NoteContextProps {
   id: string
   authorId: string
   refetch: any
+  setOpen?: Dispatch<SetStateAction<boolean>>
 }
 
-const NoteContext = ({ title, id, authorId, refetch }: NoteContextProps) => {
+const NoteContext = ({
+  title,
+  id,
+  authorId,
+  refetch,
+  setOpen,
+}: NoteContextProps) => {
   const deleteNote = api.note.deleteNote.useMutation({
     onSettled: () => {
       refetch.refetch()
@@ -31,7 +39,15 @@ const NoteContext = ({ title, id, authorId, refetch }: NoteContextProps) => {
     <div className="w-full rounded-md px-2 py-1 text-left hover:bg-secondary">
       <ContextMenu modal={false}>
         <ContextMenuTrigger>
-          <Link href={`/dashboard/editor/${id}`} className="w-full">
+          <Link
+            href={`/dashboard/editor/${id}`}
+            className="w-full"
+            onClick={() => {
+              if (setOpen) {
+                setOpen(false)
+              }
+            }}
+          >
             <div className="truncate">{title}</div>
           </Link>
         </ContextMenuTrigger>

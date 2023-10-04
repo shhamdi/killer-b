@@ -1,17 +1,19 @@
 "use client"
 
 import { useState } from "react"
+import { User } from "next-auth"
 
+import DashboardSidebar from "./dashboard-sidebar"
 import { Icons } from "./icons"
 import MainLogo from "./main-logo"
 import { Button } from "./ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet"
 
 interface MobileDashboardSidebarProps {
-  children: React.ReactNode
+  userId: string
 }
 
-const MobileDashboardSidebar = ({ children }: MobileDashboardSidebarProps) => {
+const MobileDashboardSidebar = ({ userId }: MobileDashboardSidebarProps) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -26,7 +28,7 @@ const MobileDashboardSidebar = ({ children }: MobileDashboardSidebarProps) => {
         <SheetHeader>
           <MainLogo className="flex" />
         </SheetHeader>
-        {children}
+        <DashboardSidebar userId={userId} setOpen={setOpen} />
       </SheetContent>
     </Sheet>
   )

@@ -1,9 +1,8 @@
 "use client"
 
-import { api } from "@/utils/api"
+import { Dispatch, SetStateAction } from "react"
 
 import { useFolders, useNotes } from "@/hooks/use-queries"
-import { toast } from "@/hooks/use-toast"
 
 import FolderContext from "./folder-context"
 import { CreateNewFolder } from "./folder-operations"
@@ -21,9 +20,10 @@ import {
 
 interface DashboardSidebarProps {
   userId: string
+  setOpen?: Dispatch<SetStateAction<boolean>>
 }
 
-const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
+const DashboardSidebar = ({ userId, setOpen }: DashboardSidebarProps) => {
   const getFolders = useFolders({ userId: userId })
 
   const getNotes = useNotes({ authorId: userId, folderId: null })
@@ -73,6 +73,7 @@ const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
                   name={item.name}
                   userId={userId}
                   refetch={getFolders}
+                  setOpen={setOpen}
                 />
               ))
             )}
@@ -90,6 +91,7 @@ const DashboardSidebar = ({ userId }: DashboardSidebarProps) => {
                 title={item.title}
                 authorId={userId}
                 refetch={getNotes}
+                setOpen={setOpen}
               />
             ))
           )}

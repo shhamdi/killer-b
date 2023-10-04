@@ -4,7 +4,17 @@ import { z } from "zod"
 
 export const foldersRouter = createTRPCRouter({
   createFolder: protectedProcedure
-    .input(z.object({ userId: z.string(), name: z.string().min(3).max(128) }))
+    .input(
+      z.object({
+        userId: z.string(),
+        name: z
+          .string()
+          .min(3, { message: "Folder name must be at least 3 characters" })
+          .max(128, {
+            message: "Folder name must be less than 128 characters",
+          }),
+      })
+    )
     .mutation(async ({ input }) => {
       const { name, userId } = input
 

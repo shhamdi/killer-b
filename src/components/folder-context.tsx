@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react"
 import { api } from "@/utils/api"
 
 import { useNotes } from "@/hooks/use-queries"
@@ -24,6 +25,7 @@ interface FolderContextProps {
   value: string
   userId: string
   refetch: any
+  setOpen?: Dispatch<SetStateAction<boolean>>
 }
 
 const FolderContext = ({
@@ -31,6 +33,7 @@ const FolderContext = ({
   value,
   userId,
   refetch,
+  setOpen,
 }: FolderContextProps) => {
   const deleteFolder = api.folder.deleteFolder.useMutation({
     onSettled: () => {
@@ -110,6 +113,7 @@ const FolderContext = ({
                 title={item.title}
                 authorId={userId}
                 refetch={getNotesInsideFolder}
+                setOpen={setOpen}
               />
             ))
           )}

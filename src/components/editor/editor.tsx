@@ -141,7 +141,6 @@ const Editor = ({ note, className, ...props }: EditorProps) => {
           <TextareaAutosize
             id="title"
             defaultValue={note.title}
-            autoFocus
             placeholder="Untitled"
             className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
             {...register("title")}

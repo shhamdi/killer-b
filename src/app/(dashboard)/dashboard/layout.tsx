@@ -40,9 +40,8 @@ export default async function DashboardLayout({
       >
         <div className="container flex items-center justify-between">
           <MainLogo />
-          <MobileDashboardSidebar>
-            <DashboardSidebar userId={user.id} />
-          </MobileDashboardSidebar>
+          <MobileDashboardSidebar userId={user.id} />
+
           <nav className="flex items-center gap-4">
             <ToggleTheme />
             <UserAccountNav
