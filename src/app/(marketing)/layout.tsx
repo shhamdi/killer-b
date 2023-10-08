@@ -16,9 +16,12 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
     <div>
       <header
         className={cn(
-          "py-2 dark:border-b dark:border-secondary-border md:border-none",
+          // "border-b border-secondary-border md:border-none",
+          "shadow-sm md:shadow-none",
           "bg-background dark:bg-secondary",
-          "h-fit"
+          "h-14 py-2",
+          "fixed inset-x-0 top-0",
+          "flex items-center"
         )}
       >
         <div className="container flex items-center justify-between">
@@ -36,7 +39,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
           </nav>
         </div>
       </header>
-      <main>{children}</main>
+      <main className="mt-14">{children}</main>
       <SiteFooter />
     </div>
   )

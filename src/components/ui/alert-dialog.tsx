@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/utils/classname"
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
 
-import { cn } from "@/utils/classname"
 import { buttonVariants } from "@/components/ui/button"
 
 const AlertDialog = AlertDialogPrimitive.Root
@@ -11,10 +11,9 @@ const AlertDialog = AlertDialogPrimitive.Root
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger
 
 const AlertDialogPortal = ({
-  className,
   ...props
 }: AlertDialogPrimitive.AlertDialogPortalProps) => (
-  <AlertDialogPrimitive.Portal className={cn(className)} {...props} />
+  <AlertDialogPrimitive.Portal {...props} />
 )
 AlertDialogPortal.displayName = AlertDialogPrimitive.Portal.displayName
 

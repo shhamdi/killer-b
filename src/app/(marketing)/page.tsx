@@ -9,12 +9,12 @@ import MarketingImg from "@/components/marketing-img"
 export default function Home() {
   return (
     <>
-      <section className="justify-center pb-10 pt-16 md:pb-16 md:pt-24 lg:pb-24 lg:pt-32">
+      <section className="justify-center pb-11 pt-14 md:pb-16 md:pt-24 lg:pb-24 lg:pt-32">
         <div className="container flex max-w-[64rem] flex-col items-center justify-between gap-6 md:flex-row">
           <div className=" flex flex-col items-start gap-4 text-left">
             <h1
               className={cn(
-                "text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl",
+                "text-2xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl",
                 "leading-tight sm:leading-tight md:leading-tight lg:leading-tight",
                 "max-w-lg"
               )}
@@ -51,10 +51,10 @@ export default function Home() {
       </section>
       <section
         id="features"
-        className="space-y-6 bg-accent/50 py-8 md:py-12 lg:py-24"
+        className="space-y-6 bg-accent/50 pb-8 md:py-12 lg:py-24"
       >
         <div className="container flex flex-col items-center space-y-8 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="pt-20 text-2xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl">
             Features
           </h2>
           <p className="max-w-3xl font-normal text-foreground-2 sm:text-xl sm:leading-tight">
